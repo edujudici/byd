@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('layouts.app', 'App\Http\ViewComposers\DefaultComposer');
     }
 
     /**
@@ -23,7 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
         require_once __DIR__ . '/../Http/helpers.php';
     }
 }

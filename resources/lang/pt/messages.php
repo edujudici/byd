@@ -4,13 +4,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Messages Language Lines
+    | Navbar
     |--------------------------------------------------------------------------
-    |
-    | messages website
-    |
+    */
+    'nav.home' => 'Home',
+    'nav.about' => 'Sobre Nós',
+    'nav.services' => 'Serviços',
+    'nav.portifolio' => 'Galeria',
+    'nav.blog' => 'Blog',
+    'nav.contact' => 'Contato',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Website
+    |--------------------------------------------------------------------------
     */
 
-    'test' => 'Mensagem de Teste',
+    'test' => 'Message Test',
 
 ];

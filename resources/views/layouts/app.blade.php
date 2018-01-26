@@ -49,6 +49,8 @@
 
 		<script src="{{ asset('js/vendor/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
 
+        <script src="{{ asset('js/knockout-3.4.2.js') }}"></script>
+
 		<!-- Le fav and touch icons -->
 		<link rel="shortcut icon" href="{{ asset('images/ico/favicon.ico') }}">
 		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('images/ico/apple-touch-icon-144-precomposed.png') }}">
@@ -60,6 +62,9 @@
 	<body>
 
         @include('layouts.header')
+
+        @section('sidebar')
+        @show
 
         @yield('content')
 
@@ -87,9 +92,16 @@
         </div>
         <!--  /Login form -->
 
+        <script type="text/javascript">
+            var company = {!! $company !!},
+                repo_link = '{!! config('app.repo_link') !!}',
+                repo_token = '{!! config('app.repo_token') !!}';
+        </script>
+
         <script src="{{ asset('js/vendor/jquery-1.9.1.min.js') }}"></script>
         <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/main.js') }}"></script>
+        <script src="{{ asset('js/Api.js') }}"></script>
         <!-- Required javascript files for Slider -->
         <script src="{{ asset('js/jquery.ba-cond.min.js') }}"></script>
         <script src="{{ asset('js/jquery.slitslider.js') }}"></script>
@@ -97,35 +109,35 @@
 
         <!-- SL Slider -->
         <script type="text/javascript"> 
-        $(function() {
-            var Page = (function() {
+            $(function() {
+                var Page = (function() {
 
-                var $navArrows = $( '#nav-arrows' ),
-                slitslider = $( '#slider' ).slitslider( {
-                    autoplay : true
-                } ),
+                    var $navArrows = $( '#nav-arrows' ),
+                    slitslider = $( '#slider' ).slitslider( {
+                        autoplay : true
+                    } ),
 
-                init = function() {
-                    initEvents();
-                },
-                initEvents = function() {
-                    $navArrows.children( ':last' ).on( 'click', function() {
-                        slitslider.next();
-                        return false;
-                    });
+                    init = function() {
+                        initEvents();
+                    },
+                    initEvents = function() {
+                        $navArrows.children( ':last' ).on( 'click', function() {
+                            slitslider.next();
+                            return false;
+                        });
 
-                    $navArrows.children( ':first' ).on( 'click', function() {
-                        slitslider.previous();
-                        return false;
-                    });
-                };
+                        $navArrows.children( ':first' ).on( 'click', function() {
+                            slitslider.previous();
+                            return false;
+                        });
+                    };
 
-                return { init : init };
+                    return { init : init };
 
-            })();
+                })();
 
-            Page.init();
-        });
+                Page.init();
+            });
         </script>
         <!-- /SL Slider -->
 

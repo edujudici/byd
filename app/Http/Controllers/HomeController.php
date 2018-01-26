@@ -9,7 +9,8 @@ class HomeController extends Controller
 {
     protected $homeI;
 
-    public function __construct(HomeInterface $homeI) {
+    public function __construct(HomeInterface $homeI)
+    {
         $this->homeI = $homeI;
     }
 
@@ -19,7 +20,10 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function index() {
-    	return view('home');
+    public function show()
+    {
+        $response = $this->homeI->getData();
+    	return view('home')
+            ->with('response', json_encode($response));
     }
 }
