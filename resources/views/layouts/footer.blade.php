@@ -7,8 +7,7 @@
         <div class="row-fluid">
 
             <!--Contact Form-->
-            <!-- ko with: company -->
-            <div class="span4 pull-left">
+            <div class="span4 pull-left" data-bind="with: company">
                 <h4>Endereço</h4>
                 <ul class="unstyled address">
                     <li>
@@ -24,10 +23,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- /ko-->
             <!--End Contact Form-->
-
-            
 
             <!--Important Links-->
             <div id="tweets" class="span4">
@@ -47,18 +43,23 @@
             <div class="span4">
                 <h4>Newsletter</h4>
                 <p>Cadastre-se e receba todas as novidades de promoção e conteúdo.</p>
-                <form class="contact-form">
+
+                <form class="contact-form" data-bind="with: newsletter">
                     <div class="row-fluid">
                         <div class="span12">
-                            <div class="control-group">
+                            <div class="control-group" data-bind="css: {error: error() && !name()}">
                                 <label>Nome</label>
-                                <input type="text" class="input-block-level">
+                                <input type="text" class="input-block-level" data-bind="value: name">
                             </div>
-                            <div class="control-group">
+                            <div class="control-group" data-bind="css: {error: error() && !email()}">
                                 <label>E-mail</label>
-                                <input type="text" class="input-block-level">
+                                <input type="text" class="input-block-level" data-bind="value: email">
                             </div>
-                            
+
+                            <div class="status alert alert-success"
+                                data-bind="visible: success" style="display: none">Cadastro realizado com sucesso!</div>
+
+                            <button type="button" class="btn btn-primary btn-large pull-right" data-bind="click: save">Confimar</button>
                         </div>
                     </div>
                 </form>
@@ -80,42 +81,6 @@
                 </div>
             </div> --}}
             <!--End Archives-->
-
-            {{-- <div class="span3">
-                <h4>FLICKR GALLERY</h4>
-                <div class="row-fluid first">
-                        <ul class="thumbnails">
-                          <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829540293/" title="01 (254) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7003/6829540293_bd99363818_s.jpg" width="75" height="75" alt="01 (254)"></a>
-                        </li>
-                        <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829537417/" title="01 (196) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7013/6829537417_465d28e1db_s.jpg" width="75" height="75" alt="01 (196)"></a>
-                        </li>
-                        <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829527437/" title="01 (65) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7021/6829527437_88364c7ec4_s.jpg" width="75" height="75" alt="01 (65)"></a>
-                        </li>
-                        <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829524451/" title="01 (6) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7148/6829524451_a725793358_s.jpg" width="75" height="75" alt="01 (6)"></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="row-fluid">
-                    <ul class="thumbnails">
-                        <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829524451/" title="01 (6) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7148/6829524451_a725793358_s.jpg" width="75" height="75" alt="01 (6)"></a>
-                        </li>
-                        <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829540293/" title="01 (254) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7003/6829540293_bd99363818_s.jpg" width="75" height="75" alt="01 (254)"></a>
-                        </li>
-                        <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829537417/" title="01 (196) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7013/6829537417_465d28e1db_s.jpg" width="75" height="75" alt="01 (196)"></a>
-                        </li>
-                        <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829527437/" title="01 (65) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7021/6829527437_88364c7ec4_s.jpg" width="75" height="75" alt="01 (65)"></a>
-                        </li>
-                    </ul>
-                </div>
-            </div> --}}
 
         </div>
         <!--/row-fluid-->
@@ -160,9 +125,50 @@
 
 <script type="text/javascript">
 
+    var viewModel,
+        urlNewsletterSave = "{{ route('newsletter.save') }}";
+
+    function Newsletter()
+    {
+        var self= this;
+
+        self.name = ko.observable();
+        self.email = ko.observable();
+        self.success = ko.observable();
+        self.error = ko.observable();
+
+        self.save = function() {
+
+            if (!self.name() ||
+                !self.email())
+            {
+                self.error(true);
+                return;
+            }
+
+            var data = {
+                name: self.name(),
+                email: self.email(),
+                _token: '{{ csrf_token() }}',
+            
+            },
+            callback = function(data)
+            {   
+                if (data.status)
+                {
+                    self.success(true);
+                }
+            };
+
+            Api.post(urlNewsletterSave, data, callback);
+        }
+    }
+
     function ViewModel()
     {
         var self = this;
+
+        self.newsletter = new Newsletter();
 
         self.company;
         self.setData = function()

@@ -24,3 +24,5 @@ Route::get('/portifolio', ['as' => 'portifolio.show', 'uses' => 'PortifolioContr
 Route::get('/blog', ['as' => 'blog.show', 'uses' => 'BlogController@show']);
 Route::get('/contact', ['as' => 'contact.show', 'uses' => 'ContactController@show']);
 Route::post('/contact-send', ['as' => 'contact.send', 'uses' => 'ContactController@send']);
+
+Route::post('/newsletter-save', ['as' => 'newsletter.save', 'uses' => 'NewsletterController@save']);

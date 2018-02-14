@@ -64,7 +64,7 @@
                         </div>
 
                     </div>
-                    <button type="button" class="btn btn-primary btn-large pull-right" data-bind="click: send">Send Message</button>
+                    <button type="button" class="btn btn-primary btn-large pull-right" data-bind="click: send">Enviar Mensagem</button>
                     <p> </p>
 
                 </form>

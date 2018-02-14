@@ -210,6 +210,7 @@ return [
         App\Providers\ContactServiceProvider::class,
         App\Providers\PortifolioServiceProvider::class,
         App\Providers\ServicesServiceProvider::class,
+        App\Providers\NewsletterServiceProvider::class
 
     ],
 
