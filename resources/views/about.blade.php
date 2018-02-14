@@ -59,7 +59,7 @@
             </div>
             <!-- /ko -->
 
-            <div class="span6">
+            <div class="span6" data-bind="visible: ourServices().length > 0">
                 <h3>Nossos serviços</h3>
                 <div class="accordion" id="accordion2">
 
@@ -107,31 +107,34 @@
             </div>
         </div>
 
-        <!-- Meet the team -->
-        <h1 class="center">Conheça Nosso Time</h1>
+        <!-- ko if: team().length > 0 -->
 
-        <hr>
+            <!-- Meet the team -->
+            <h1 class="center">Conheça Nosso Time</h1>
 
-        <div class="row-fluid">
+            <hr>
 
-            <!-- ko foreach: team -->
-            <div class="span3">
-                <div class="box">
-                    <p><img src="images/sample/team1.jpg" alt="" ></p>
-                    <h5 data-bind="text: TEA_NAME"></h5>
-                    <p data-bind="text: TEA_DESCRIPTION"></p>
-                    
-                    <!-- ko foreach: team_social_network-->
-                        <a class="btn btn-social" data-bind="attr: {href: TSN_LINK}, css: 'btn-'+TSN_ICON"><i data-bind="css: 'icon-'+TSN_ICON"></i></a>
-                    <!-- /ko -->
+            <div class="row-fluid">
+
+                <!-- ko foreach: team -->
+                <div class="span3">
+                    <div class="box">
+                        <p><img src="images/sample/team1.jpg" alt="" ></p>
+                        <h5 data-bind="text: TEA_NAME"></h5>
+                        <p data-bind="text: TEA_DESCRIPTION"></p>
+                        
+                        <!-- ko foreach: team_social_network-->
+                            <a class="btn btn-social" data-bind="attr: {href: TSN_LINK}, css: 'btn-'+TSN_ICON"><i data-bind="css: 'icon-'+TSN_ICON"></i></a>
+                        <!-- /ko -->
+                    </div>
                 </div>
-            </div>
-            <!-- /ko -->
+                <!-- /ko -->
 
-        </div>
-        <p>&nbsp;</p>
-        <p></p>
-        <hr>
+            </div>
+            <p>&nbsp;</p>
+            <p></p>
+            <hr>
+        <!-- /ko -->
     </section>
 @endsection
 

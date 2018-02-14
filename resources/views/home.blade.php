@@ -41,7 +41,7 @@
     <!--/Slider-->
 
     <!--Services-->
-    <section id="services">
+    <section id="services" data-bind="visible: servicesOfferGroup().length > 0">
         <div class="container">
             <div class="center gap">
                 <h3>O que nós oferecemos</h3>
@@ -71,7 +71,7 @@
     </section>
     <!--/Services-->
 
-    <section id="clients" class="main">
+    <section id="clients" class="main" data-bind="visible: partnersGroup().length > 0">
         <div class="container">
             <div class="row-fluid">
                 <div class="span2">
