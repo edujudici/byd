@@ -18,10 +18,10 @@
                 <div class="sl-slide item1" data-orientation="horizontal" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
                     <div class="sl-slide-inner">
                         <div class="container">
-                            <img class="pull-right" alt="" data-bind="attr: {src: image}" />
+                            <img class="pull-right" alt="" data-bind="attr: {src: image}" style="width: 55%" />
                             <h2 data-bind="text: title"></h2>
                             <h3 class="gap" data-bind="text: description"></h3>
-                            <a class="btn btn-large btn-transparent" data-bind="attr: {href: link}">Learn More</a>
+                            <a class="btn btn-large btn-transparent" data-bind="attr: {href: link}, visible: link">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -44,8 +44,8 @@
     <section id="services">
         <div class="container">
             <div class="center gap">
-                <h3>What We Offer</h3>
-                <p class="lead">Look at some of the recent projects we have completed for our valuble clients</p>
+                <h3>O que nós oferecemos</h3>
+                <p class="lead">Confira alguns serviços disponibilizado na BYD Escola de Idiomas.</p>
             </div>
 
             <!-- ko foreach: servicesOfferGroup -->
@@ -76,12 +76,12 @@
             <div class="row-fluid">
                 <div class="span2">
                     <div class="clearfix">
-                        <h4 class="pull-left">OUR PARTNERS</h4>
+                        <h4 class="pull-left">Nossos parceiros</h4>
                         <div class="pull-right">
                             <a class="prev" href="#myCarousel" data-slide="prev"><i class="icon-angle-left icon-large"></i></a> <a class="next" href="#myCarousel" data-slide="next"><i class="icon-angle-right icon-large"></i></a>
                         </div>
                     </div>
-                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                    <p>Entidades parceiras onde disponibilizam serviços para aperfeiçoar neste caminho de aprendizagem.</p>
                 </div>
                 <div class="span10">
                     <div id="myCarousel" class="carousel slide clients">

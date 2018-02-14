@@ -7,48 +7,65 @@
         <div class="row-fluid">
 
             <!--Contact Form-->
-            <div class="span3">
-                <h4>ADDRESS</h4>
+            <!-- ko with: company -->
+            <div class="span4 pull-left">
+                <h4>Endereço</h4>
                 <ul class="unstyled address">
                     <li>
-                        <i class="icon-home"></i><strong>Address:</strong> 1032 Wayback Lane, Wantagh<br>NY 11793
+                        <i class="icon-home"></i><strong>Endereço:</strong> <span data-bind="text: COM_ADDRESS"></span>
                     </li>
                     <li>
                         <i class="icon-envelope"></i>
-                        <strong>Email: </strong> support@email.com
-                    </li>
-                    <li>
-                        <i class="icon-globe"></i>
-                        <strong>Website:</strong> www.domain.com
+                        <strong>Email: </strong> <span data-bind="text: COM_EMAIL"></span>
                     </li>
                     <li>
                         <i class="icon-phone"></i>
-                        <strong>Toll Free:</strong> 631-409-3105
+                        <strong>Telefone:</strong> <span data-bind="text: COM_TELEPHONE"></span>
                     </li>
                 </ul>
             </div>
+            <!-- /ko-->
             <!--End Contact Form-->
 
+            
+
             <!--Important Links-->
-            <div id="tweets" class="span3">
-                <h4>OUR COMPANY</h4>
+            <div id="tweets" class="span4">
+                <h4>Nossa Companhia</h4>
                 <div>
                     <ul class="arrow">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Copyright</a></li>
-                        <li><a href="#">We are hiring</a></li>
-                        <li><a href="#">Clients</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="{{ route('about.show') }}">@lang('messages.footer.about')</a></li>
+                        <li><a href="#">@lang('messages.footer.terms')</a></li>
+                        <li><a href="#">@lang('messages.footer.privacy')</a></li>
+                        <li><a href="#">@lang('messages.footer.copyright')</a></li>
+                        <li><a href="#">@lang('messages.footer.blog')</a></li>
                     </ul>
                 </div>  
             </div>
             <!--Important Links-->
 
+            <div class="span4">
+                <h4>Newsletter</h4>
+                <p>Cadastre-se e receba todas as novidades de promoção e conteúdo.</p>
+                <form class="contact-form">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="control-group">
+                                <label>Nome</label>
+                                <input type="text" class="input-block-level">
+                            </div>
+                            <div class="control-group">
+                                <label>E-mail</label>
+                                <input type="text" class="input-block-level">
+                            </div>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+
             <!--Archives-->
-            <div id="archives" class="span3">
+           {{--  <div id="archives" class="span3">
                 <h4>ARCHIVES</h4>
                 <div>
                     <ul class="arrow">
@@ -61,10 +78,10 @@
                         <li><a href="#">June 2012 (31)</a></li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
             <!--End Archives-->
 
-            <div class="span3">
+            {{-- <div class="span3">
                 <h4>FLICKR GALLERY</h4>
                 <div class="row-fluid first">
                         <ul class="thumbnails">
@@ -98,7 +115,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
         <!--/row-fluid-->
@@ -112,7 +129,7 @@
     <div class="container">
         <div class="row-fluid">
             <div class="span5 cp">
-                &copy; 2013 <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">ShapeBootstrap</a>. All Rights Reserved.
+                &copy; 2018 <a target="_blank" title="BYD IDIOMAS">BYD</a>. All Rights Reserved.
             </div>
             <!--/Copyright-->
 
@@ -140,3 +157,22 @@
     </div>
 </footer>
 <!--/Footer-->
+
+<script type="text/javascript">
+
+    function ViewModel()
+    {
+        var self = this;
+
+        self.company;
+        self.setData = function()
+        {
+            self.company = company;
+        }
+    }
+
+    var viewModel = new ViewModel();
+    viewModel.setData();
+    ko.applyBindings(viewModel, document.getElementById('bottom'));
+</script>
+

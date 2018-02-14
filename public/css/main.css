@@ -559,7 +559,7 @@ select:focus,textarea:focus,input[type="text"]:focus,input[type="password"]:focu
     box-shadow:none
 }
 .input-block-level{
-    min-height:50px
+    min-height:40px !important
 }
 textarea#message{
     padding:10px 15px;

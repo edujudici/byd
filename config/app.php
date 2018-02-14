@@ -101,7 +101,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt',
 
     'languages' =>  ['en','pt'],
 

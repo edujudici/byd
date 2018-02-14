@@ -73,8 +73,7 @@
 
             <!-- ko with: company -->
             <div class="span3">
-                <h4>Our Address</h4>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                <h4>Nosso endereço</h4>
                 <p>
                     <i class="icon-map-marker pull-left"></i><span data-bind="text: COM_ADDRESS"></span>
                 </p>

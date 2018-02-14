@@ -57,6 +57,13 @@
 		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('images/ico/apple-touch-icon-114-precomposed.png') }}">
 		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('images/ico/apple-touch-icon-72-precomposed.png') }}">
 		<link rel="apple-touch-icon-precomposed" href="{{ asset('images/ico/apple-touch-icon-57-precomposed.png') }}">
+
+        <script type="text/javascript">
+            var company = {!! $company !!},
+                repo_link = '{!! config('app.repo_link') !!}',
+                repo_token = '{!! config('app.repo_token') !!}';
+        </script>
+        
 	</head>
 
 	<body>
@@ -91,12 +98,6 @@
             <!--/Modal Body-->
         </div>
         <!--  /Login form -->
-
-        <script type="text/javascript">
-            var company = {!! $company !!},
-                repo_link = '{!! config('app.repo_link') !!}',
-                repo_token = '{!! config('app.repo_token') !!}';
-        </script>
 
         <script src="{{ asset('js/vendor/jquery-1.9.1.min.js') }}"></script>
         <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
