@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a id="logo" class="pull-left" href="index.html"></a>
+            <a id="logo" class="pull-left" href="{{ route('home.show') }}"></a>
             <div class="nav-collapse collapse pull-right">
                 <ul class="nav">
                     <li class="active"><a href="{{ route('home.show') }}">@lang('messages.nav.home')</a></li>

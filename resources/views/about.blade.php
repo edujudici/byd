@@ -26,9 +26,16 @@
     <section id="about-us" class="container main">
 
         <div class="row-fluid">
-            <div class="span12 center">
+            <div class="span6">
                 <img alt="" data-bind="attr: {src: image}" />
             </div>
+
+            <!-- ko with: ourHistory -->
+            <div class="span6">
+                <h2 data-bind="text: ABO_TITLE" style="margin-top: 0"></h2>
+                <p class="justify-text" data-bind="text: ABO_DESCRIPTION"></p>
+            </div>
+            <!-- /ko -->
         </div>
 
         <div class="row-fluid">
@@ -38,26 +45,18 @@
                 <p class="justify-text" data-bind="text: ABO_DESCRIPTION"></p>
             </div>
             <!-- /ko -->
-            
-            <!-- ko with: ourHistory -->
-            <div class="span6">
-                <h2 data-bind="text: ABO_TITLE"></h2>
-                <p class="justify-text" data-bind="text: ABO_DESCRIPTION"></p>
-            </div>
-            <!-- /ko -->
-            
-        </div>
 
-        <hr>
-
-        <div class="row-fluid">
-            
             <!-- ko with: whyChooseUs -->
             <div class="span6">
                 <h2 data-bind="text: ABO_TITLE"></h2>
                 <p class="justify-text" data-bind="text: ABO_DESCRIPTION"></p>
             </div>
             <!-- /ko -->
+        </div>
+
+        <hr>
+
+        <div class="row-fluid">
 
             <div class="span6" data-bind="visible: ourServices().length > 0">
                 <h3>Nossos serviços</h3>
@@ -79,33 +78,11 @@
                         </div>
                     </div>
                     <!-- /ko -->
-                    {{-- <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                                Premium Wordpress Themes
-                            </a>
-                        </div>
-                        <div id="collapseTwo" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                                PSD2XHTML Conversion
-                            </a>
-                        </div>
-                        <div id="collapseThree" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
         </div>
+
+        <hr>
 
         <!-- ko if: team().length > 0 -->
 
@@ -119,11 +96,11 @@
                 <!-- ko foreach: team -->
                 <div class="span3">
                     <div class="box">
-                        <p><img src="images/sample/team1.jpg" alt="" ></p>
-                        <h5 data-bind="text: TEA_NAME"></h5>
-                        <p data-bind="text: TEA_DESCRIPTION"></p>
+                        <p><img data-bind="attr: {src: image}" alt="" ></p>
+                        <h5 data-bind="text: name"></h5>
+                        <p data-bind="text: description"></p>
                         
-                        <!-- ko foreach: team_social_network-->
+                        <!-- ko foreach: socialNetwork-->
                             <a class="btn btn-social" data-bind="attr: {href: TSN_LINK}, css: 'btn-'+TSN_ICON"><i data-bind="css: 'icon-'+TSN_ICON"></i></a>
                         <!-- /ko -->
                     </div>
@@ -147,6 +124,27 @@
             whyChooseUs = {{ App\Models\About::WHY_CHOOSE_US }},
             ourServices = {{ App\Models\About::OUR_SERVICES }};
 
+        function Team(obj)
+        {
+            var self = this;
+
+            self.name        = obj.TEA_NAME
+            self.description = obj.TEA_DESCRIPTION
+            socialNetwork    = obj.team_social_network;
+            self.image       = ko.observable();
+
+            self.setImage = function(data)
+            {
+                self.image(data);
+            }
+
+            self.loadImage = function(imageId)
+            {
+                Api.get(Api.url(imageId), self.setImage);                    
+            }
+            self.loadImage(obj.TEA_IMAGE_ID);
+        }
+
         function ViewModel()
         {
             var self = this;
@@ -161,7 +159,9 @@
             self.setData = function(response)
             {
                 if (response.status) {
-                    self.team(response.data.team);
+                    self.team(ko.utils.arrayMap(response.data.team, function(obj) {
+                        return new Team(obj);
+                    }));
                     
                     self.ourServices(ko.utils.arrayFilter(response.data.about, function(item) {
                         return item.ABO_TYPE == ourServices;

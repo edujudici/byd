@@ -4,9 +4,9 @@
     <div class="container">
 
         <!--row-fluids-->
-        <div class="row-fluid">
+        <div class="row-fluid" style="padding-left: 10px">
 
-            <!--Contact Form-->
+            <!--Address-->
             <div class="span4 pull-left" data-bind="with: company">
                 <h4>Endereço</h4>
                 <ul class="unstyled address">
@@ -23,7 +23,7 @@
                     </li>
                 </ul>
             </div>
-            <!--End Contact Form-->
+            <!--End Address-->
 
             <!--Important Links-->
             <div id="tweets" class="span4">
@@ -49,17 +49,17 @@
                         <div class="span12">
                             <div class="control-group" data-bind="css: {error: error() && !name()}">
                                 <label>Nome</label>
-                                <input type="text" class="input-block-level" data-bind="value: name">
+                                <input type="text" class="input-block-level" data-bind="value: name" style="width: 95%">
                             </div>
                             <div class="control-group" data-bind="css: {error: error() && !email()}">
                                 <label>E-mail</label>
-                                <input type="text" class="input-block-level" data-bind="value: email">
+                                <input type="text" class="input-block-level" data-bind="value: email" style="width: 95%">
                             </div>
 
                             <div class="status alert alert-success"
                                 data-bind="visible: success" style="display: none">Cadastro realizado com sucesso!</div>
 
-                            <button type="button" class="btn btn-primary btn-large pull-right" data-bind="click: save">Confimar</button>
+                            <button type="button" class="btn btn-primary btn-large" data-bind="click: save">Confimar</button>
                         </div>
                     </div>
                 </form>
