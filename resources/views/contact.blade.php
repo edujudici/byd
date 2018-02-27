@@ -33,8 +33,7 @@
 
                 <h4>Formulário de Contato</h4>
 
-                <div class="status alert alert-success"
-                    data-bind="visible: success" style="display: none">E-mail enviado com sucesso!</div>
+                <div class="status alert alert-success" style="display: none">E-mail enviado com sucesso!</div>
 
                 <form id="main-contact-form" class="contact-form">
                     <div class="row-fluid">
@@ -133,7 +132,13 @@
                 {   
                     if (data.status)
                     {
-                        self.success(true);
+                        viewModel.contact(new Contact());
+
+                        $(".alert-success").fadeIn('fast');
+                        setTimeout(function()
+                        {
+                            $(".alert-success").fadeOut(300);
+                        }, 3000);
                     }
                 };
 
@@ -144,7 +149,7 @@
         function ViewModel()
         {
             var self = this;
-            self.contact = new Contact();
+            self.contact = ko.observable(new Contact());
         }        
 
         viewModel = new ViewModel();
