@@ -27,7 +27,7 @@ class HomeServiceImpl implements HomeInterface
     public function getData()
     {
         $data = [
-            'banners' => $this->banner->all(),
+            'banners' => $this->banner->orderBy('BAN_ORDER')->get(),
             'servicesOffer' => $this->servicesOffer->all(),
             'partners' => $this->partners->all(),
             'videos' => $this->video->all()
