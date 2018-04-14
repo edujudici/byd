@@ -16,11 +16,11 @@
             <div class="sl-slider">
                 <!-- ko foreach: banners-->
                 <div class="sl-slide item1" data-orientation="horizontal" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
-                    <div class="sl-slide-inner">
+                    <div class="sl-slide-inner" data-bind="style: {'background-color':  color }" style="background: #ccc !important">
                         <div class="container">
                             <img class="pull-right" alt="" data-bind="attr: {src: image}" style="width: 55%" />
-                            <h2 data-bind="text: title"></h2>
-                            <h3 class="gap" data-bind="text: description"></h3>
+                            <h2 data-bind="text: title, style: {'color': fontColor}"></h2>
+                            <h3 class="gap" data-bind="text: description, style: {'color': fontColor}"></h3>
                             <a class="btn btn-large btn-transparent" data-bind="attr: {href: link}, visible: link">Learn More</a>
                         </div>
                     </div>
@@ -70,6 +70,27 @@
         </div>
     </section>
     <!--/Services-->
+
+    <hr>
+
+    <section id="videos">
+        <div class="container">
+            <div class="center">
+                <h3>Videos</h3>
+                <p class="lead">Clique para assistir aos vídeos de nossos parceiros e alunos contando experiencias do intercâmbio. </p>
+            </div>  
+            <div class="gap"></div>
+
+            <!-- ko foreach: videos -->
+                <div class="span4" style="padding: 0 10px">
+                    <h4 data-bind="text: VID_TITLE"></h4 >
+                    <div class="flex-video widescreen"><iframe data-bind="attr: {src: VID_URL}" frameborder="0" allowfullscreen=""></iframe></div>
+                    <p data-bind="text: VID_DESCRIPTION"></p>
+                </div>
+            <!-- /ko -->
+        </div>
+
+    </section>
 
     <section id="clients" class="main" data-bind="visible: partnersGroup().length > 0">
         <div class="container">
@@ -123,9 +144,11 @@
         {
             var self = this;
 
-            self.title       = obj.BAN_TITLE
-            self.description = obj.BAN_DESCRIPTION
-            self.link        = obj.BAN_LINK
+            self.title       = obj.BAN_TITLE;
+            self.description = obj.BAN_DESCRIPTION;
+            self.link        = obj.BAN_LINK;
+            self.color        = obj.BAN_COLOR;
+            self.fontColor        = obj.BAN_FONT_COLOR;
             self.image       = ko.observable();
 
             self.setImage = function(data)
@@ -166,6 +189,7 @@
             self.banners = ko.observableArray();
             self.partners = ko.observableArray();
             self.servicesOffer = ko.observableArray();
+            self.videos = ko.observableArray();
 
             self.setData = function(response)
             {
@@ -179,6 +203,7 @@
                         return new Partner(obj);
                     }));
                     self.servicesOffer(response.data.servicesOffer);
+                    self.videos(response.data.videos);
                 }
             };            
 
@@ -197,6 +222,7 @@
         viewModel.setData(response);
         ko.applyBindings(viewModel, document.getElementById('slide-show'));
         ko.applyBindings(viewModel, document.getElementById('services'));
+        ko.applyBindings(viewModel, document.getElementById('videos'));
         ko.applyBindings(viewModel, document.getElementById('clients'));
     </script>
 @endsection

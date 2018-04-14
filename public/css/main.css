@@ -368,12 +368,13 @@ header .dropdown-menu:before{
     margin:0;
     padding:0
 }
-#services{
+#services, #videos{
     background:#252525;
     color:#999;
     padding-bottom: 0
 }
-#services h1,#services h2,#services h3,#services h4,#services h5,#services h6{
+#services h1,#services h2,#services h3,#services h4,#services h5,#services h6,
+#videos h1,#videos h2,#videos h3,#videos h4,#videos h5,#videos h6 {
     color:#fff
 }
 #main-contents{
@@ -760,3 +761,33 @@ ul.faq li>div h3{
 form.contact-form input, form.contact-form textarea {background: #cacaca}
 
 .row-fluid{padding: 5px}
+
+
+
+
+
+
+.flex-video {
+  position: relative;
+  padding-top: 25px;
+  padding-bottom: 67.5%;
+  height: 0;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.flex-video.widescreen { padding-bottom: 57.25%; }
+.flex-video.vimeo { padding-top: 0; }
+
+.flex-video iframe,
+.flex-video object,
+.flex-video embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+@media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px) {
+  .flex-video { padding-top: 0; }
+}

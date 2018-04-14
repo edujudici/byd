@@ -6,6 +6,7 @@ use App\Http\Api\HomeInterface;
 use App\Models\Banner;
 use App\Models\ServicesOffer;
 use App\Models\Partners;
+use App\Models\Video;
 
 class HomeServiceImpl implements HomeInterface
 {
@@ -13,12 +14,14 @@ class HomeServiceImpl implements HomeInterface
 	protected $banner;
     protected $servicesOffer;
     protected $partners;
+    protected $video;
     
-    public function __construct(Banner $banner, ServicesOffer $servicesOffer, Partners $partners)
+    public function __construct(Banner $banner, ServicesOffer $servicesOffer, Partners $partners, Video $video)
     {
         $this->banner = $banner;
         $this->servicesOffer = $servicesOffer;
         $this->partners = $partners;
+        $this->video = $video;
     }
     
     public function getData()
@@ -27,6 +30,7 @@ class HomeServiceImpl implements HomeInterface
             'banners' => $this->banner->all(),
             'servicesOffer' => $this->servicesOffer->all(),
             'partners' => $this->partners->all(),
+            'videos' => $this->video->all()
         ];
         return response()->api($data);
     }
