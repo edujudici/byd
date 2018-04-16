@@ -29,7 +29,7 @@
             <div id="tweets" class="span4">
                 <h4>Nossa Companhia</h4>
                 <div>
-                    <ul class="arrow">
+                    <ul class="unstyled">
                         <li><a href="{{ route('about.show') }}">@lang('messages.footer.about')</a></li>
                         <li><a href="#">@lang('messages.footer.terms')</a></li>
                         <li><a href="#">@lang('messages.footer.privacy')</a></li>

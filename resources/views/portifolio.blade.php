@@ -27,7 +27,7 @@
 
         <div class="row-fluid" style="margin-bottom: 25px">
             <!-- ko foreach: types -->
-                <button type="button" class="btn btn-primary btn-large" data-bind="text: POT_TITLE, click: $root.setType"></button>
+                <button type="button" class="btn btn-primary btn-large" data-bind="text: POT_TITLE, click: $root.setType" style="margin-bottom: 3px"></button>
             <!-- /ko -->
         </div>
 

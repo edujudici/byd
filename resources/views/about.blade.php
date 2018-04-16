@@ -26,7 +26,7 @@
     <section id="about-us" class="container main">
 
         <div class="row-fluid">
-            <div class="span6">
+            <div class="span6" style="margin-bottom: 20px">
                 <img alt="" data-bind="attr: {src: image}" />
             </div>
 

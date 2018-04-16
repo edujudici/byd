@@ -10,7 +10,7 @@
             <a id="logo" class="pull-left" href="{{ route('home.show') }}"></a>
             <div class="nav-collapse collapse pull-right">
                 <ul class="nav">
-                    <li class="active"><a href="{{ route('home.show') }}">@lang('messages.nav.home')</a></li>
+                    <li {{-- class="active" --}}><a href="{{ route('home.show') }}">@lang('messages.nav.home')</a></li>
                     <li><a href="{{ route('about.show') }}">@lang('messages.nav.about')</a></li>
                     <li><a href="{{ route('services.show') }}">@lang('messages.nav.services')</a></li>
                     <li><a href="{{ route('portifolio.show') }}">@lang('messages.nav.portifolio')</a></li>
@@ -31,9 +31,9 @@
                     </li>--}}
                     {{-- <li><a href="{{ route('blog.show') }}">@lang('messages.nav.blog')</a></li>  --}}
                     <li><a href="{{ route('contact.show') }}">@lang('messages.nav.contact')</a></li>
-                    <li class="login">
+                    {{-- <li class="login">
                         <a data-toggle="modal" href="#loginForm"><i class="icon-lock"></i></a>
-                    </li>
+                    </li> --}}
                 </ul>        
             </div><!--/.nav-collapse -->
         </div>
