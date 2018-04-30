@@ -82,7 +82,7 @@
             <div class="gap"></div>
 
             <!-- ko foreach: videos -->
-                <div class="span4" style="padding: 0 10px">
+                <div class="span4" style="padding: 0 0; margin-left: 10px">
                     <h4 data-bind="text: VID_TITLE"></h4 >
                     <div class="flex-video widescreen"><iframe data-bind="attr: {src: VID_URL}" frameborder="0" allowfullscreen=""></iframe></div>
                     <p data-bind="text: VID_DESCRIPTION"></p>
