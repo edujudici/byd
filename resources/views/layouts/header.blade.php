@@ -1,6 +1,6 @@
 <!--Header-->
 <header class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
+    <div class="navbar-inner" style="height: 100px">
         <div class="container">
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </a>
             <a id="logo" class="pull-left" href="{{ route('home.show') }}"></a>
-            <div class="nav-collapse collapse pull-right">
+            <div class="nav-collapse collapse pull-right" style="padding-top: 10px">
                 <ul class="nav">
                     <li {{-- class="active" --}}><a href="{{ route('home.show') }}">@lang('messages.nav.home')</a></li>
                     <li><a href="{{ route('about.show') }}">@lang('messages.nav.about')</a></li>

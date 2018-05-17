@@ -9,7 +9,7 @@
 @section('content')
 
     <!--Slider-->
-    <section id="slide-show">
+    <section id="slide-show" style="margin-top: 20px">
         <div id="slider" class="sl-slider-wrapper">
 
             <!--Slider Items-->    
