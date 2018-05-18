@@ -41,14 +41,14 @@
                                 <div class="overlay">
                                 </div>
                                 <div class="links">
-                                    <a data-toggle="modal" data-bind="attr: {href: '#modal-'+$index()}"><i class="icon-eye-open"></i></a><a href="#"><i class="icon-link"></i></a>                                
+                                    <a data-toggle="modal" data-bind="attr: {href: '#modal-'+id}"><i class="icon-eye-open"></i></a><a href="#"><i class="icon-link"></i></a>                                
                                 </div>
                             </div>
                             <div class="desc">
                                 <h5 data-bind="text: title"></h5>
                                 <small data-bind="text: description"></small>
                             </div>
-                            <div class="modal hide fade" data-bind="attr: {id: 'modal-'+$index()}">
+                            <div class="modal hide fade" data-bind="attr: {id: 'modal-'+id}">
                                 <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></a>
                                 <div class="modal-body">
                                     <img data-bind="attr: {src: image}" alt=" " width="100%" style="max-height:400px">
@@ -71,8 +71,9 @@
         {
             var self = this;
 
-            self.title       = obj.POR_TITLE
-            self.description = obj.POR_DESCRIPTION
+            self.id          = obj.POR_ID;
+            self.title       = obj.POR_TITLE;
+            self.description = obj.POR_DESCRIPTION;
             self.type        = obj.POT_ID;
             self.image       = ko.observable();
 
